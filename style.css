@@ -1,6 +1,7 @@
 :root {
     --black: #1E1E1E;
     --white: #FFFFFF;
+    --light_grey: #F0F0E6;
 }
 
 *,
@@ -24,6 +25,7 @@ body {
     font-optical-sizing: auto;
     font-style: normal;
     -webkit-font-smoothing: antialiased;
+    background-color: var(--black);
 }
 
 img,
@@ -53,16 +55,96 @@ h6 {
 }
 
 button {
-    background-color: unset;
+    background-color: var(--black);
     border: unset;
+    color: var(--white);
 }
 
 a {
-    text-decoration: unset;
-    color: unset;
+    text-decoration: none;
+    color: var(--white);
 }
 
 #root,
 #__next {
     isolation: isolate;
+}
+
+img {
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+    filter: none; /* Couleurs par défaut */
+}
+
+img.clicked {
+    filter: grayscale(100%); /* Applique un effet noir et blanc */
+}
+h1 {
+    text-align: center;
+    font-size: 2.2em;
+}
+h4 {
+    text-align: center;
+    text-decoration: underline;
+}
+
+header {
+    background-color:var(--white);
+}
+
+.img-container {
+    display: flex;    
+    flex-wrap: wrap; 
+    margin-top: 20px; /* Ajoute un peu de marge au-dessus et en dessous */
+}
+
+#monument-name, #monument-state {
+    color:var(--white);   
+}
+
+#monument-city, #monument-description {
+    color:var(--light_grey);
+}
+.monument-details {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    margin-right: 300px; /* Applique une marge à gauche de 80 pixels */
+    text-align: left; /* Aligne le texte à gauche */
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+header {    
+    display: flex;            /* Utilisation de flexbox pour centrer */
+    flex-direction: column;   /* Aligner les éléments verticalement */
+    justify-content: center;  /* Centrer verticalement */
+    align-items: center;      /* Centrer horizontalement */
+    width : 1100px;
+    height: 65vh;    
+    }
+.navbar button{
+    margin: 15px 24px;
+    padding:  10px 5px;
+    border-radius: 2px;
+    width: 150px;
+    cursor: pointer;
+}
+#show-map-button {
+    margin-top: 20px; /* Espacement au-dessus du bouton */
+    padding: 10px 20px; /* Espacement interne */
+    font-size: 16px; /* Taille de la police */
+    cursor: pointer; /* Curseur pour indiquer un clic */
+}
+
+#map {
+    height: 500px; /* Hauteur de la carte */
+    width: 500px; /* Largeur de la carte */
+    display: none; /* Masquer la carte par défaut */
 }
