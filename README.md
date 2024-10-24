@@ -99,7 +99,7 @@ Pour éviter les requêtes trop nombreuses vous pourrez afficher tous les monume
 | - Projet livré dans les délais         | <ul><li>- [X] &nbsp;</li><ul> |                           |
 |                                        | <ul><li>- [X] ⭐</li><ul>     |                           |
 
-**Nombre d'étoiles obtenues** : ⭐⭐⭐⭐
+**Nombre d'étoiles obtenues** : ⭐⭐⭐⭐⭐
 
 ## Ressources
 
