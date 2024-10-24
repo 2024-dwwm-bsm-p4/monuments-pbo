@@ -64,12 +64,12 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 // Créer des boutons pour chaque monument
 const navbarDiv = document.querySelector('.navbar');
-monuments.monuments.forEach(function(monument) {
+monuments.monuments.forEach(function (monument) {
     // Créer un bouton pour chaque monument
     const button = document.createElement('button');
     button.textContent = monument.name; // Nom du monument
     button.setAttribute('data-id', monument.id); // Ajouter l'id
-    button.addEventListener('click', function() {
+    button.addEventListener('click', function () {
         displayDescription(monument.id); // Afficher la description
         showMonumentOnMap(monument); // Afficher le monument sur la carte
     });
@@ -88,7 +88,7 @@ function displayDescription(id) {
         nameElement.textContent = monument.name; // Mettre à jour le nom
         cityElement.textContent = `${monument.city}, `; // Mettre à jour la ville
         descriptionElement.textContent = monument.description; // Mettre à jour la description
-        stateElement.textContent = monument.state; 
+        stateElement.textContent = monument.state;
         applyGrayscale(monument.id);
     } else {
         nameElement.textContent = "Nom non trouvé.";
@@ -120,13 +120,15 @@ const mapDiv = document.getElementById('map'); // Sélectionner le div de la car
 // Masquer la carte par défaut
 mapDiv.style.display = 'none';
 
-showMapButton.addEventListener('click', function() {
+showMapButton.addEventListener('click', function () {
     // Vérifier l'état d'affichage de la carte
     if (mapDiv.style.display === 'none' || mapDiv.style.display === '') {
         mapDiv.style.display = 'block'; // Afficher la carte
         map.invalidateSize(); // Ajuster la taille de la carte
+        showMapButton.textContent = 'Masquer la carte'; // Mettre à jour le texte du bouton
     } else {
         mapDiv.style.display = 'none'; // Cacher la carte si déjà affichée
+        showMapButton.textContent = 'Afficher la carte'; // Remettre le texte d'origine
     }
 });
 
@@ -135,13 +137,13 @@ function displayMonumentImages() {
     const imgContainer = document.querySelector('.img-container');
     imgContainer.innerHTML = ''; // Vider le conteneur avant d'ajouter les images
 
-    monuments.monuments.forEach(function(monument) {
+    monuments.monuments.forEach(function (monument) {
         const imgElement = document.createElement('img');
         imgElement.src = monument.img; // Chemin de l'image corrigé
         imgElement.alt = monument.name; // Texte alternatif
 
         // Ajouter un événement click sur l'image
-        imgElement.addEventListener('click', function() {
+        imgElement.addEventListener('click', function () {
             displayDescription(monument.id); // Appeler la fonction avec l'ID du monument
             showMonumentOnMap(monument); // Afficher le monument sur la carte
         });
@@ -150,18 +152,30 @@ function displayMonumentImages() {
     });
 }
 
+// Appliquer du noir et blanc aux images sauf celle cliquée
 function applyGrayscale(selectedId) {
     const images = document.querySelectorAll('.img-container img');
-    
+
     images.forEach(image => {
-        const imgId = monuments.monuments.find(m => m.img === image.src).id; // Récupérer l'ID du monument associé à l'image
-        if (imgId === selectedId) {
+        // Comparaison du nom de fichier uniquement (sans le chemin absolu)
+        const imgName = image.src.split('/').pop(); // Récupère uniquement le nom de fichier
+        const monument = monuments.monuments.find(m => m.img.includes(imgName)); // Comparaison avec le chemin relatif
+
+        if (monument && monument.id === selectedId) {
             image.classList.remove('grayscale'); // Retirer l'effet noir et blanc de l'image cliquée
         } else {
             image.classList.add('grayscale'); // Appliquer l'effet noir et blanc aux autres images
         }
     });
 }
+
+// Enlever l'effet noir et blanc après le rafraîchissement de la page
+window.addEventListener('load', function () {
+    const images = document.querySelectorAll('.img-container img');
+    images.forEach(image => {
+        image.classList.remove('grayscale'); // Retirer l'effet noir et blanc de toutes les images
+    });
+});
 
 // Appeler la fonction pour afficher les images des monuments
 displayMonumentImages();

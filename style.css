@@ -74,77 +74,103 @@ img {
     width: 200px;
     height: 200px;
     cursor: pointer;
-    filter: none; /* Couleurs par défaut */
+    filter: none;
 }
 
-img.clicked {
-    filter: grayscale(100%); /* Applique un effet noir et blanc */
+
+.grayscale {
+    filter: grayscale(100%);
+    transition: filter 0.5s ease;
 }
+
+
+.grayscale:hover {
+    filter: none;
+}
+
 h1 {
     text-align: center;
     font-size: 2.2em;
 }
+
 h4 {
     text-align: center;
     text-decoration: underline;
 }
 
 header {
-    background-color:var(--white);
+    background-color: var(--white);
 }
 
 .img-container {
-    display: flex;    
-    flex-wrap: wrap; 
-    margin-top: 20px; /* Ajoute un peu de marge au-dessus et en dessous */
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
 }
 
-#monument-name, #monument-state {
-    color:var(--white);   
+#monument-name,
+#monument-state {
+    color: var(--white);
 }
 
-#monument-city, #monument-description {
-    color:var(--light_grey);
+#monument-city,
+#monument-description {
+    color: var(--light_grey);
 }
+
 .monument-details {
     display: flex;
     flex-direction: column;
     margin-top: 40px;
-    margin-right: 300px; /* Applique une marge à gauche de 80 pixels */
-    text-align: left; /* Aligne le texte à gauche */
+    margin-right: 0;
+    text-align: left;
+    align-self: flex-start;
+    margin-left: 250px;
 }
 
-.container{
+
+.container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+    height: 100%;
 }
 
-header {    
-    display: flex;            /* Utilisation de flexbox pour centrer */
-    flex-direction: column;   /* Aligner les éléments verticalement */
-    justify-content: center;  /* Centrer verticalement */
-    align-items: center;      /* Centrer horizontalement */
-    width : 1100px;
-    height: 65vh;    
-    }
-.navbar button{
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 1100px;
+    height: 65vh;
+}
+
+.navbar button {
     margin: 15px 24px;
-    padding:  10px 5px;
+    padding: 10px 5px;
     border-radius: 2px;
     width: 150px;
     cursor: pointer;
 }
+
 #show-map-button {
-    margin-top: 20px; /* Espacement au-dessus du bouton */
-    padding: 10px 20px; /* Espacement interne */
-    font-size: 16px; /* Taille de la police */
-    cursor: pointer; /* Curseur pour indiquer un clic */
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 #map {
-    height: 500px; /* Hauteur de la carte */
-    width: 500px; /* Largeur de la carte */
-    display: none; /* Masquer la carte par défaut */
+    height: 500px;
+    width: 500px;
+    display: none;
+    margin-bottom: 20px;
+}
+.map-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
 }
